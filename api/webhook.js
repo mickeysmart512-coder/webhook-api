@@ -65,16 +65,25 @@
 
 
 
-
-
 const express = require('express');
 const app = express();
 
 app.use(express.json());
 
+// Log when the server is ready
+app.listen(3000, () => {
+    console.log('Webhook server is listening on port 3000');
+});
+
 app.post('/webhook', (req, res) => {
-    // Handle webhook logic
+    console.log('Webhook received a request'); // Log when a request is received
+    console.log('Request body:', req.body); // Log the request body to see incoming data
+
+    // Handle webhook logic here
+    // You can perform additional checks and logic based on req.body if needed
+
     res.status(200).send('User wallet updated successfully.');
+    console.log('Response sent: User wallet updated successfully.'); // Log when the response is sent
 });
 
 module.exports = app;
